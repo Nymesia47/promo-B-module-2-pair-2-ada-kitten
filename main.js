@@ -59,5 +59,5 @@ cancelForm.addEventListener('click', ()=>{
     raceCat.value = "";
     descCat.value = "";
 
-    // newForm.classList.add('collapsed');
+    newForm.classList.add('collapsed');
 });
