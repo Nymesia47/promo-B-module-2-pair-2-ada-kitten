@@ -39,9 +39,25 @@ const KittenThree = `<li class="card">
 
 const btnAddCat = document.querySelector('.js-btn-add');
 const newForm = document.querySelector('.js-new-form');
+const cancelForm = document.querySelector('.js-form-cancel');
+const imgCat = document.querySelector('.js-cat-img');
+const nameCat = document.querySelector('.js-cat-name');
+const raceCat = document.querySelector('.js-cat-race');
+const descCat = document.querySelector('.js-cat-description');
+
 
 catList.innerHTML = catList.innerHTML + KittenOne + KittenTwo + KittenThree;
 
 btnAddCat.addEventListener('click',()=>{
     newForm.classList.toggle('collapsed');
+});
+
+cancelForm.addEventListener('click', ()=>{
+    // newForm.reset();
+    imgCat.value = "";
+    nameCat.value = "";
+    raceCat.value = "";
+    descCat.value = "";
+
+    // newForm.classList.add('collapsed');
 });
