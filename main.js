@@ -44,6 +44,10 @@ const imgCat = document.querySelector('.js-cat-img');
 const nameCat = document.querySelector('.js-cat-name');
 const raceCat = document.querySelector('.js-cat-race');
 const descCat = document.querySelector('.js-cat-description');
+const searchButton = document.querySelector('.js_button-search');
+const kittenDesc1 = 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.';
+const kittenDesc2 = 'Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.';
+const kittenDesc3 = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.';
 
 
 catList.innerHTML = catList.innerHTML + KittenOne + KittenTwo + KittenThree;
@@ -60,4 +64,39 @@ cancelForm.addEventListener('click', ()=>{
     descCat.value = "";
 
     newForm.classList.add('collapsed');
+});
+
+searchButton.addEventListener('click', (ev)=>{
+    ev.preventDefault();
+    const descrSearchText = document.querySelector('.js_in_search_desc').value; // Recoge el valor del input de la descripción en una variable
+
+    catList.innerHTML = '';
+
+    if (kittenDesc1.includes(descrSearchText)){
+        
+        catList.innerHTML = KittenOne;
+
+    }
+    
+    if (kittenDesc2.includes(descrSearchText)) {
+
+       catList.innerHTML += KittenTwo;
+        
+      }
+      
+    if (kittenDesc3.includes(descrSearchText)) {
+
+        catList.innerHTML += KittenThree;
+
+        //if(kittenDesc1.includes(descrSearchText) && kittenDesc3.includes(descrSearchText)){
+            //catList.innerHTML = KittenOne + KittenThree;
+        //}
+
+        //if (catList.innerHTML.includes(kittenDesc1) || catList.innerHTML.includes(kittenDesc2)){
+            //catList.innerHTML += KittenThree;
+        //} else {
+            //catList.innerHTML =KittenThree;
+        //}
+        
+      }
 });
