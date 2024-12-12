@@ -53,9 +53,26 @@ const kittenDesc3 = 'Tienen la cabeza cuadrada y los ojos simétricos, por lo qu
 
 catList.innerHTML = catList.innerHTML + KittenOne + KittenTwo + KittenThree;
 
-btnAddCat.addEventListener('click',()=>{
-    newForm.classList.toggle('collapsed');
-});
+//Mostrar/ocultar el formulario
+
+function showNewCatForm(){
+    newForm.classList.remove('collapsed');
+}
+
+function hideNewCatForm(){
+    newForm.classList.add('collapsed');
+}
+
+function handleClickNewCatForm (event){
+    if (newForm.classList.contains('collapsed')) {
+        showNewCatForm();
+    } else {
+        hideNewCatForm();
+    }
+
+}
+
+btnAddCat.addEventListener('click', handleClickNewCatForm);
 
 cancelForm.addEventListener('click', ()=>{
     // newForm.reset();
@@ -116,6 +133,5 @@ if (kittenRace3.innerHTML === "") {
     breedText = `Uy que despiste, no sabemos su raza`;
     kittenRace3.innerHTML = breedText;
 } 
-
 
 
