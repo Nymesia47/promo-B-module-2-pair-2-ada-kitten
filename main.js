@@ -81,45 +81,87 @@ cancelForm.addEventListener('click', ()=>{
 });
 
 //FILTRAR BUSQUEDA POR DESCRIPCIÓN
-searchButton.addEventListener('click', (ev)=>{
+function filterKitten(ev){
     ev.preventDefault();
     const descrSearchText = document.querySelector('.js_in_search_desc').value; // Recoge el valor del input de la descripción en una variable
+    const raceSearchText = document.querySelector('.js_in_search_race').value;
 
+    if ( descrSearchText !== '' ) {
 
-    catList.innerHTML = '';
+          catList.innerHTML = '';
 
-    if (kittenDesc1.includes(descrSearchText)){
+        if (kittenDesc1.includes(descrSearchText)){
         
-        catList.innerHTML = kittenOne;
+            catList.innerHTML = kittenOne;
 
-    }
+        }
     
-    if (kittenDesc2.includes(descrSearchText)) {
+        if (kittenDesc2.includes(descrSearchText)) {
 
-        catList.innerHTML += kittenTwo;
+            catList.innerHTML += kittenTwo;
         
-    }
+        }
     
-    if (kittenDesc3.includes(descrSearchText)) {
+        if (kittenDesc3.includes(descrSearchText)) {
 
-        catList.innerHTML += kittenThree;
+            catList.innerHTML += kittenThree;
         
+        }
+
+
     }
 
-});
+    if ( raceSearchText !== '') {
+        catList.innerHTML = '';
+
+        if (kittenRac1.includes(raceSearchText)){
+        
+            catList.innerHTML = kittenOne;
+
+        }
+    
+        if (kittenRac2.includes(raceSearchText)) {
+
+            catList.innerHTML += kittenTwo;
+        
+        }
+    
+        if (kittenRac3.includes(raceSearchText)) {
+
+            catList.innerHTML += kittenThree;
+        
+        }
+    }
+
+
+    
+};
+
+searchButton.addEventListener('click', filterKitten);
 
 //COMPROBAR SI HAY RAZA
 //1 - seleccionar elementos HTML: h4 (raza).
 //2 - comprobar contenido if/else.
 //3 - pintar resultado. 
 
-let breedText = "";
+//let breedText = "";
+
 const kittenRace = document.querySelector('.js-kitten-race');
 
-if (kittenRace.innerHTML === "") {
-    breedText = `Uy que despiste, no sabemos su raza`;
-    kittenRace.innerHTML = breedText;
-};
 
+function renderRace (race) {
+    if (race === "") {
+        return `Uy que despiste, no sabemos su raza`;
+    } else {
+        return race;
+    };
+}
 
+kittenRace.innerHTML = renderRace(kittenRace);
 
+// let breedText = "";
+// const kittenRace = document.querySelector('.js-kitten-race');
+// if (kittenRace.innerHTML === "") {
+//     breedText = `Uy que despiste, no sabemos su raza`;
+//     kittenRace.innerHTML = breedText;
+// };
