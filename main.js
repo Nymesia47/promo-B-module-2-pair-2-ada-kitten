@@ -4,12 +4,16 @@
 const catList = document.querySelector('.js-list');
 const btnAddCat = document.querySelector('.js-btn-add');
 const newForm = document.querySelector('.js-new-form');
-const cancelForm = document.querySelector('.js-form-cancel');
+const buttonCancelForm = document.querySelector('.js-form-cancel');
 const imgCat = document.querySelector('.js-cat-img');
 const nameCat = document.querySelector('.js-cat-name');
 const raceCat = document.querySelector('.js-cat-race');
 const descCat = document.querySelector('.js-cat-description');
 const searchButton = document.querySelector('.js_button-search');
+
+//listado de gatitos (objetos)
+
+// const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
 //TARJETAS GATOS
 //GATO UNO
@@ -88,9 +92,10 @@ function handleClickNewCatForm (event){
 
 }
 
-btnAddCat.addEventListener('click', handleClickNewCatForm);
+ 
 
-cancelForm.addEventListener('click', ()=>{
+function cancelNewKitten(event) {
+    event.preventDefault();
     // newForm.reset();
     imgCat.value = "";
     nameCat.value = "";
@@ -98,7 +103,14 @@ cancelForm.addEventListener('click', ()=>{
     descCat.value = "";
 
     newForm.classList.add('collapsed');
-});
+
+}
+
+
+btnAddCat.addEventListener('click', handleClickNewCatForm);
+
+buttonCancelForm.addEventListener('click', cancelNewKitten);
+
 
 //FILTRAR BUSQUEDA POR DESCRIPCIÓN
 function filterKitten(ev){
