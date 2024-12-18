@@ -5,6 +5,7 @@ const catList = document.querySelector('.js-list');
 const btnAddCat = document.querySelector('.js-btn-add');
 const newForm = document.querySelector('.js-new-form');
 const buttonCancelForm = document.querySelector('.js-form-cancel');
+const buttonNewCat = document.querySelector('.js-btn-newCat');
 const imgCat = document.querySelector('.js-cat-img');
 const nameCat = document.querySelector('.js-cat-name');
 const raceCat = document.querySelector('.js-cat-race');
@@ -13,7 +14,6 @@ const searchButton = document.querySelector('.js_button-search');
 
 //listado de gatitos (objetos)
 
-// const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
 //TARJETAS GATOS
 //GATO UNO
@@ -38,6 +38,14 @@ const kittenData_3 ={
     race : 'Maine Coon' 
 };
 
+const newKittenData = {
+    image : imgCat.value,
+    name : nameCat.value,
+    desc : descCat.value,
+    race : raceCat.value,
+
+};
+
 function renderKitten(kittenData){
     let kittenImage = kittenData["image"];
     let kittenName = kittenData["name"];
@@ -51,6 +59,7 @@ function renderKitten(kittenData){
                     <h4 class="card_race js-kitten-race">${kittenRace}</h4>
                     <p class="card_description">${kittenDesc}</p>
                 </li>`;
+    
     
     return newCat;
 };
@@ -67,11 +76,15 @@ function renderRace (kittenRace) {
     };
 };
 
+
+
 const kittenOne = renderKitten(kittenData_1);
 const kittenTwo = renderKitten(kittenData_2);
 const kittenThree = renderKitten(kittenData_3);
 
 catList.innerHTML = catList.innerHTML + kittenOne + kittenTwo + kittenThree;
+
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
 
 //Mostrar/ocultar el formulario
 
@@ -92,6 +105,12 @@ function handleClickNewCatForm (event){
 
 }
 
+function handleClickNewCat (event) {
+    event.preventDefault();
+    catList.innerHTML = catList.innerHTML + renderKitten(newKittenData);
+
+}
+
  
 
 function cancelNewKitten(event) {
@@ -109,7 +128,15 @@ function cancelNewKitten(event) {
 
 btnAddCat.addEventListener('click', handleClickNewCatForm);
 
+buttonNewCat.addEventListener('click', handleClickNewCat);
+
 buttonCancelForm.addEventListener('click', cancelNewKitten);
+
+/*
+1. recojer los valores del formolario y guardarlo en un objeto.
+2. render new kitten
+
+*/
 
 
 //FILTRAR BUSQUEDA POR DESCRIPCIÓN
