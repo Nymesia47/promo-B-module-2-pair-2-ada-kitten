@@ -135,6 +135,7 @@ buttonCancelForm.addEventListener('click', cancelNewKitten);
 /*
 1. recojer los valores del formolario y guardarlo en un objeto.
 2. render new kitten
+3. cambia todo
 
 */
 
