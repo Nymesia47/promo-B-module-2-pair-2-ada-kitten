@@ -46,22 +46,15 @@ const newKittenData = {
 
 };
 
-function renderKitten(kittenData){
-    let kittenImage = kittenData["image"];
-    let kittenName = kittenData["name"];
-    let kittenRace = kittenData["race"];
-    let kittenDesc = kittenData["desc"];
-    kittenRace = renderRace(kittenData["race"]); //Llamar a la función comprobar raza
-
-    let newCat = `<li class="card">
-                    <img class="card_img" src="${kittenImage}" alt="sphynx-cat" />
-                    <h3 class="card_title">${kittenName.toUpperCase()}</h3>
-                    <h4 class="card_race js-kitten-race">${kittenRace}</h4>
-                    <p class="card_description">${kittenDesc}</p>
-                </li>`;
-    
-    
-    return newCat;
+//PINTAR GATITOS
+function renderKitten (kittenData) {
+    const catItem = `<li class="card">
+                        <img class="card_img" src="${kittenData.image}" alt="sphynx-cat" />
+                        <h3 class="card_title">${kittenData.name.toUpperCase()}</h3>
+                        <h4 class="card_race js-kitten-race">${kittenData.race}</h4>
+                        <p class="card_description">${kittenData.desc}</p>
+                    </li>`;
+    return catItem;
 };
 
 //COMPROBAR SI HAY RAZA
@@ -76,15 +69,19 @@ function renderRace (kittenRace) {
     };
 };
 
-
-
 const kittenOne = renderKitten(kittenData_1);
 const kittenTwo = renderKitten(kittenData_2);
 const kittenThree = renderKitten(kittenData_3);
 
-catList.innerHTML = catList.innerHTML + kittenOne + kittenTwo + kittenThree;
-
+//ARRAY DE LISTA DE GATITOS Y RENDER DE LA TARJETAS
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+
+function renderKittenList(){
+    for(const kitten of kittenDataList){
+        catList.innerHTML += renderKitten(kitten);
+    };
+};
+renderKittenList();
 
 //Mostrar/ocultar el formulario
 
@@ -111,7 +108,6 @@ function handleClickNewCat (event) {
 
 }
 
- 
 
 function cancelNewKitten(event) {
     event.preventDefault();
@@ -133,7 +129,7 @@ buttonNewCat.addEventListener('click', handleClickNewCat);
 buttonCancelForm.addEventListener('click', cancelNewKitten);
 
 /*
-1. recojer los valores del formolario y guardarlo en un objeto.
+1. recojer los valores del formulario y guardarlo en un objeto.
 2. render new kitten
 3. cambia todo
 
@@ -145,51 +141,46 @@ function filterKitten(ev){
     ev.preventDefault();
     const descrSearchText = document.querySelector('.js_in_search_desc').value; // Recoge el valor del input de la descripción en una variable
     const raceSearchText = document.querySelector('.js_in_search_race').value;
+    //Búsqueda por descripción
+    catList.innerHTML = '';
+    if (descrSearchText !== ''){
+        for(const kitten of kittenDataList){
+            if (kitten["desc"].includes(descrSearchText)){
+                catList.innerHTML += renderKitten(kitten);
+            };
+        };
+    };
+   
+    //Búsqueda por raza
+    catList.innerHTML = '';
+    if (raceSearchText !== ''){
+        for(const kitten of kittenDataList){
+            if (kitten["race"].includes(raceSearchText)){
+                catList.innerHTML += renderKitten(kitten);
+            };
+        };
+    };
+    // if ( raceSearchText !== '') {
+    //     catList.innerHTML = '';
 
-    if ( descrSearchText !== '' ) {
-
-        catList.innerHTML = '';
-
-        if (kittenData_1["desc"].includes(descrSearchText)){
+    //     if (kittenData_1["race"].includes(raceSearchText)){
         
-            catList.innerHTML = kittenOne;
+    //         catList.innerHTML = kittenOne;
 
-        }
+    //     }
     
-        if (kittenData_2["desc"].includes(descrSearchText)) {
+    //     if (kittenData_2["race"].includes(raceSearchText)) {
 
-            catList.innerHTML += kittenTwo;
+    //         catList.innerHTML += kittenTwo;
         
-        }
+    //     }
     
-        if (kittenData_3["desc"].includes(descrSearchText)) {
+    //     if (kittenData_3["race"].includes(raceSearchText)) {
 
-            catList.innerHTML += kittenThree;
+    //         catList.innerHTML += kittenThree;
         
-        }
-    }
-
-    if ( raceSearchText !== '') {
-        catList.innerHTML = '';
-
-        if (kittenData_1["race"].includes(raceSearchText)){
-        
-            catList.innerHTML = kittenOne;
-
-        }
-    
-        if (kittenData_2["race"].includes(raceSearchText)) {
-
-            catList.innerHTML += kittenTwo;
-        
-        }
-    
-        if (kittenData_3["race"].includes(raceSearchText)) {
-
-            catList.innerHTML += kittenThree;
-        
-        }
-    }
+    //     }
+    // }
 
 
     
